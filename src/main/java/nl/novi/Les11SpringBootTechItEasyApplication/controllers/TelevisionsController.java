@@ -76,10 +76,10 @@ public class TelevisionsController {
     @ResponseBody
     public ResponseEntity<Object> getTelevisionsByBrand(@RequestParam String brand) {
         if (brand == null) {
-            throw new RecordNotFoundException("Typed brand doesn't exist. Try again or choose another brand.");
+            throw new RecordNotFoundException("No brand is filled out. Try again.");
         }
-        televisionRepository.findAll(brand);
-        return ResponseEntity.ok().build();
+        List<Television> televisionByBrand = televisionRepository.getAllTelevisionsByBrand(brand);
+        return ResponseEntity.ok().body(televisionByBrand);
     }
 }
 
