@@ -9,9 +9,9 @@
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
 	<groupId>nl.novi</groupId>
-	<artifactId>Les10SpringBootHomeWork-backend-spring-boot-tech-it-easy-controller</artifactId>
+	<artifactId>Les12SpringBootHomeWork-backend-spring-boot-tech-it-easy-service</artifactId>
 	<version>0.0.1</version>
-	<name>Les10SpringBootHomeWork-backend-spring-boot-tech-it-easy-controller</name>
+	<name>Les12SpringBootHomeWork-backend-spring-boot-tech-it-easy-service</name>
 	<description>Demo project for Spring Boot</description>
 	<properties>
 		<java.version>17</java.version>
