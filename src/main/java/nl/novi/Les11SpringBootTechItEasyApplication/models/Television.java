@@ -54,6 +54,7 @@ public class Television {
 
     }
 
+    //getters and setters
     public Long getId() {
         return id;
     }

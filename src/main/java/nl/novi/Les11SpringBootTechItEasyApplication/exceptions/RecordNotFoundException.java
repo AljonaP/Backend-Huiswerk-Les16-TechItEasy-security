@@ -13,5 +13,3 @@ public class RecordNotFoundException extends RuntimeException{
     }
 }
 
-//een default exception
-//een exception met message

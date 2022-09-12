@@ -3,46 +3,44 @@ package nl.novi.Les11SpringBootTechItEasyApplication.controllers;
 import nl.novi.Les11SpringBootTechItEasyApplication.exceptions.RecordNotFoundException;
 import nl.novi.Les11SpringBootTechItEasyApplication.models.Television;
 import nl.novi.Les11SpringBootTechItEasyApplication.repositories.TelevisionRepository;
+import nl.novi.Les11SpringBootTechItEasyApplication.services.TelevisionService;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-import org.yaml.snakeyaml.error.Mark;
+
 
 import java.util.List;
 
 @RestController
 public class TelevisionsController {
-
-    // De onderstaande regel is i.p.v. @Autowired.
-// Dit is een moderner manier om te schrijven:
     public final TelevisionRepository televisionRepository;
 
-    //constructor
-    public TelevisionsController(TelevisionRepository televisionRepository) {
+    public final TelevisionService televisionService;
+    public TelevisionsController(TelevisionRepository televisionRepository, TelevisionService televisionService) {
         this.televisionRepository = televisionRepository; //'this' verwijs naar public final Television televisionRepository. Wat na '=' staat is een parameter van TelevisionController
+        this.televisionService =  televisionService;
     }
 
     @GetMapping("/televisions")
     public ResponseEntity<List<Television>> getAllTelevisions() {
-        return ResponseEntity.ok().body(televisionRepository.findAll());
+        return ResponseEntity.ok().body(televisionService.getTelevisions());
     }
 
     @GetMapping("/televisions/{id}")
     public ResponseEntity<Object> getTelevisions(@PathVariable(name = "id") Long id) {
-//        if(id>3) {
-//            throw new RecordNotFoundException("id > 3");
-//        }
-        return ResponseEntity.ok(televisionRepository.findById(id));
+
+        return ResponseEntity.ok(televisionService.getTelevisionById(id));
     }
 
     @PostMapping("/televisions")
     public ResponseEntity<Object> add(@RequestBody Television television) {
-        Television returnTelevision = televisionRepository.save(television);
+        Television returnTelevision = televisionService.saveTelevision(television);
         return ResponseEntity.created(null).body(returnTelevision);
     }
 
     @PutMapping("/televisions/{id}")
     public ResponseEntity<Object> updateTelevision(@PathVariable Long id, @RequestBody Television television) {
-        Television updateTelevision = televisionRepository.findById(id).orElseThrow(() -> new RecordNotFoundException("Television doesn't exist with the id: " + id));
+        Television updateTelevision = televisionService.updateTelevision(id).orElseThrow(() -> new RecordNotFoundException("Television doesn't exist with the id: " + id));
+        updateTelevision.setId(television.getId());
         updateTelevision.setType(television.getType());
         updateTelevision.setBrand(television.getBrand());
         updateTelevision.setName(television.getName());
@@ -60,17 +58,15 @@ public class TelevisionsController {
         updateTelevision.setOriginalStock(television.getOriginalStock());
         updateTelevision.setSold(television.getSold());
 
-        televisionRepository.save(updateTelevision);
+        televisionService.saveTelevision(updateTelevision);
         return ResponseEntity.ok(updateTelevision);
     }
+
     @DeleteMapping("/televisions/{id}")
     public ResponseEntity<Object> deleteTelevision(@PathVariable Long id) {
-//        Television television = televisionRepository.findById(id).get();
-//        televisionRepository.delete(television);
-        televisionRepository.deleteById(id);
+        televisionService.deleteTelevision(id);
         return ResponseEntity.noContent().build();
     }
-
 
     @GetMapping("/televisions/brands")
     @ResponseBody
