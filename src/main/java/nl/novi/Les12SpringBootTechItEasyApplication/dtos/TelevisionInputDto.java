@@ -1,35 +1,55 @@
-package nl.novi.Les11SpringBootTechItEasyApplication.models;
+package nl.novi.Les12SpringBootTechItEasyApplication.dtos;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.validation.constraints.Min;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 
-@Entity
-@Table(name="televisions")
-public class Television {
-    @Id
-    @GeneratedValue
+public class TelevisionInputDto {
     private Long id;
+    @NotBlank
+    @Size(min=1, max=50)
     private String type;
+    @NotBlank
+    @Size(min=1, max=50)
     private String brand;
+    @NotBlank
+    @Size(min=1, max=50)
     private String name;
+
+
     private Double price;
+
+
     private Double availableSize;
+
+
     private Double refreshRate;
+
+    @NotBlank
+    @Size(min=1, max=50)
     private String screenType;
+
+    @NotBlank
+    @Size(min=1, max=50)
     private String screenQuality;
+
     private Boolean smartTv;
+
     private Boolean wifi;
+
     private Boolean voiceControl;
+
     private Boolean hdr;
+
     private Boolean bluetooth;
+
     private Boolean ambiLight;
     private Integer originalStock;
     private Integer sold;
 
-    //constructor
-    public Television(Long id, String type, String brand, String name, Double price, Double availableSize, Double refreshRate, String screenType, String screenQuality, Boolean smartTv, Boolean wifi, Boolean voiceControl, Boolean hdr, Boolean bluetooth, Boolean ambiLight, Integer originalStock, Integer sold) {
+
+    public TelevisionInputDto(Long id, String type, String brand, String name, Double price, Double availableSize, Double refreshRate, String screenType, String screenQuality, Boolean smartTv, Boolean wifi, Boolean voiceControl, Boolean hdr, Boolean bluetooth, Boolean ambiLight, Integer originalStock, Integer sold) {
         this.id = id;
         this.type = type;
         this.brand = brand;
@@ -49,12 +69,6 @@ public class Television {
         this.sold = sold;
     }
 
-    //default constructor
-    public Television(){
-
-    }
-
-    //getters and setters
     public Long getId() {
         return id;
     }
@@ -189,5 +203,29 @@ public class Television {
 
     public void setSold(Integer sold) {
         this.sold = sold;
+    }
+
+    @Override
+    public String toString() {
+        return "TelevisionDto{" +
+                "id=" + id +
+                ", type='" + type + '\'' +
+                ", brand='" + brand + '\'' +
+                ", name='" + name + '\'' +
+                ", price=" + price +
+                ", availableSize=" + availableSize +
+                ", refreshRate=" + refreshRate +
+                ", screenType='" + screenType + '\'' +
+                ", screenQuality='" + screenQuality + '\'' +
+                ", smartTv=" + smartTv +
+                ", wifi=" + wifi +
+                ", voiceControl=" + voiceControl +
+                ", hdr=" + hdr +
+                ", bluetooth=" + bluetooth +
+                ", ambiLight=" + ambiLight +
+                ", originalStock=" + originalStock +
+                ", sold=" + sold +
+                '}';
+
     }
 }

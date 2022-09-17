@@ -1,6 +1,6 @@
-package nl.novi.Les11SpringBootTechItEasyApplication.repositories;
+package nl.novi.Les12SpringBootTechItEasyApplication.repositories;
 
-import nl.novi.Les11SpringBootTechItEasyApplication.models.Television;
+import nl.novi.Les12SpringBootTechItEasyApplication.models.Television;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 import java.util.List;

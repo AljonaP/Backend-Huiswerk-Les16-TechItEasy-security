@@ -1,6 +1,6 @@
-package nl.novi.Les11SpringBootTechItEasyApplication.controllers;
+package nl.novi.Les12SpringBootTechItEasyApplication.controllers;
 
-import nl.novi.Les11SpringBootTechItEasyApplication.exceptions.RecordNotFoundException;
+import nl.novi.Les12SpringBootTechItEasyApplication.exceptions.RecordNotFoundException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.ControllerAdvice;
