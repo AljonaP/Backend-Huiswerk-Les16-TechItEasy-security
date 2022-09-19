@@ -37,20 +37,15 @@ public class TelevisionsController {
         return ResponseEntity.created(null).body(dto);
     }
 
-
     @PutMapping("/televisions/{id}")
     public ResponseEntity<Object> updateTelevision(@PathVariable Long id, @RequestBody TelevisionInputDto television) {
-
-         televisionService.updateTelevision(television, id);
-         return ResponseEntity.noContent().build();
-//        TelevisionDto updateTelevision = televisionService.updateTelevision(television, id);
-//        return ResponseEntity.ok().body(updateTelevision);
+        TelevisionDto updateTelevision = televisionService.updateTelevision(television, id);
+         return ResponseEntity.ok(updateTelevision);
     }
 
     @DeleteMapping("/televisions/{id}")
-    public ResponseEntity<Object> deleteTelevision(@PathVariable Long id) {
+    public void deleteTelevision(@PathVariable Long id) {
         televisionService.deleteTelevision(id);
-        return ResponseEntity.noContent().build();
     }
 
     @GetMapping("/televisions/brands")
