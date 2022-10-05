@@ -36,3 +36,7 @@ INSERT INTO joined_table (televisions_id, wall_brackets_id) values (1001, 1004);
 INSERT INTO joined_table (televisions_id, wall_brackets_id) values (1001, 1005);
 
 
+--
+
+-- INSERT INTO users (username, authority, enabled, apiKey, email) VALUES ('henk', 'password', true, '456789', "test@testy.tst")
+-- INSERT INTO authorities (username, authority) VALUES ('henk', 'ROLE_ADMIN')
