@@ -4,8 +4,8 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
-public class Les12SpringBoot11TechItEasyApplication {
+public class les13SpringBootTechItEasyApplication {
     public static void main(String[] args) {
-        SpringApplication.run(Les12SpringBoot11TechItEasyApplication.class, args);
+        SpringApplication.run(les13SpringBootTechItEasyApplication.class, args);
     }
 }

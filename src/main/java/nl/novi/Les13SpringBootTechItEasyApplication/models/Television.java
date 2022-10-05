@@ -1,6 +1,17 @@
-package nl.novi.Les12SpringBootTechItEasyApplication.dtos;
+package nl.novi.Les13SpringBootTechItEasyApplication.models;
 
-public class TelevisionDto {
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
+import javax.persistence.*;
+import java.util.List;
+
+
+@Entity
+@Table(name="televisions")
+public class Television {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+//    @Column(name="id")
     private Long id;
     private String type;
     private String brand;
@@ -19,10 +30,22 @@ public class TelevisionDto {
     private Integer originalStock;
     private Integer sold;
 
-    public TelevisionDto(){
-    }
 
-    public TelevisionDto(Long id, String type, String brand, String name, Double price, Double availableSize, Double refreshRate, String screenType, String screenQuality, Boolean smartTv, Boolean wifi, Boolean voiceControl, Boolean hdr, Boolean bluetooth, Boolean ambiLight, Integer originalStock, Integer sold) {
+    @OneToOne
+    @JsonIgnore
+    RemoteController remotecontroller;
+
+    @ManyToOne(fetch = FetchType.EAGER)
+    @JoinColumn(name = "ci_modules_id")
+    private CIModule cimodule;
+
+    @ManyToMany //employee
+    @JsonIgnore
+    @JoinTable(name="joined_table", joinColumns = @JoinColumn(name = "televisions_id"), inverseJoinColumns = @JoinColumn(name="wall_brackets_id"))
+    List<WallBracket> wallBrackets;
+
+    //constructor
+    public Television(Long id, String type, String brand, String name, Double price, Double availableSize, Double refreshRate, String screenType, String screenQuality, Boolean smartTv, Boolean wifi, Boolean voiceControl, Boolean hdr, Boolean bluetooth, Boolean ambiLight, Integer originalStock, Integer sold) {
         this.id = id;
         this.type = type;
         this.brand = brand;
@@ -42,6 +65,11 @@ public class TelevisionDto {
         this.sold = sold;
     }
 
+    //default constructor
+    public Television(){
+    }
+
+    //getters and setters
     public Long getId() {
         return id;
     }
@@ -178,26 +206,31 @@ public class TelevisionDto {
         this.sold = sold;
     }
 
-    @Override
-    public String toString() {
-        return "TelevisionInputDto{" +
-                "id=" + id +
-                ", type='" + type + '\'' +
-                ", brand='" + brand + '\'' +
-                ", name='" + name + '\'' +
-                ", price=" + price +
-                ", availableSize=" + availableSize +
-                ", refreshRate=" + refreshRate +
-                ", screenType='" + screenType + '\'' +
-                ", screenQuality='" + screenQuality + '\'' +
-                ", smartTv=" + smartTv +
-                ", wifi=" + wifi +
-                ", voiceControl=" + voiceControl +
-                ", hdr=" + hdr +
-                ", bluetooth=" + bluetooth +
-                ", ambiLight=" + ambiLight +
-                ", originalStock=" + originalStock +
-                ", sold=" + sold +
-                '}';
+    public RemoteController getRemotecontroller() {
+        return remotecontroller;
+    }
+
+    public void setRemotecontroller(RemoteController remotecontroller) {
+        this.remotecontroller = remotecontroller;
+    }
+
+    public CIModule getCimodule() {
+        return cimodule;
+    }
+
+    public void setCimodule(CIModule cimodule) {
+        this.cimodule = cimodule;
+    }
+
+    public List<WallBracket> getWallBrackets() {
+        return wallBrackets;
+    }
+
+    public void addWallBracket(WallBracket wallBracket) {
+        wallBrackets.add(wallBracket);
+    }
+
+    public void setWallBrackets(List<WallBracket> wallBrackets) {
+        this.wallBrackets = wallBrackets;
     }
 }

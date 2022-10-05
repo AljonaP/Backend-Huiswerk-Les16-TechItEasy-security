@@ -1,10 +1,11 @@
-package nl.novi.Les12SpringBootTechItEasyApplication.controllers;
-import nl.novi.Les12SpringBootTechItEasyApplication.dtos.TelevisionDto;
-import nl.novi.Les12SpringBootTechItEasyApplication.dtos.TelevisionInputDto;
-import nl.novi.Les12SpringBootTechItEasyApplication.exceptions.RecordNotFoundException;
-import nl.novi.Les12SpringBootTechItEasyApplication.models.Television;
-import nl.novi.Les12SpringBootTechItEasyApplication.repositories.TelevisionRepository;
-import nl.novi.Les12SpringBootTechItEasyApplication.services.TelevisionService;
+package nl.novi.Les13SpringBootTechItEasyApplication.controllers;
+import nl.novi.Les13SpringBootTechItEasyApplication.dtos.TelevisionDto;
+import nl.novi.Les13SpringBootTechItEasyApplication.dtos.TelevisionInputDto;
+import nl.novi.Les13SpringBootTechItEasyApplication.exceptions.RecordNotFoundException;
+import nl.novi.Les13SpringBootTechItEasyApplication.models.Television;
+import nl.novi.Les13SpringBootTechItEasyApplication.repositories.TelevisionRepository;
+import nl.novi.Les13SpringBootTechItEasyApplication.services.TelevisionService;
+
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -22,7 +23,7 @@ public class TelevisionsController {
     }
 
     @GetMapping("/televisions")
-    public ResponseEntity<List<Television>> getAllTelevisions() {
+    public ResponseEntity<List<TelevisionDto>> getAllTelevisions() {
         return ResponseEntity.ok().body(televisionService.getTelevisions());
     }
 
@@ -35,6 +36,7 @@ public class TelevisionsController {
     public ResponseEntity<Object> addTelevision(@Valid @RequestBody TelevisionInputDto televisionInputDto) {
         TelevisionDto dto = televisionService.saveTelevision(televisionInputDto);
         return ResponseEntity.created(null).body(dto);
+
     }
 
     @PutMapping("/televisions/{id}")
@@ -57,5 +59,24 @@ public class TelevisionsController {
         List<Television> televisionByBrand = televisionRepository.getAllTelevisionsByBrand(brand);
         return ResponseEntity.ok().body(televisionByBrand);
     }
+
+    @PutMapping("/televisions/{televisionID}/remote-controllers/{remoteControllerID}")
+    public ResponseEntity<Object> assignRemoteControllerToTv(@PathVariable Long remoteControllerID, @PathVariable Long televisionID ){
+        TelevisionDto televisionDto = televisionService.assignRemoteControllerToTelevision(remoteControllerID, televisionID);
+        return ResponseEntity.ok(televisionDto);
+    }
+
+    @PutMapping("televisions/{televisionID}/ci-modules/{ciModuleId}")
+    public ResponseEntity<Object> assignCIModuleToTv(@PathVariable Long ciModuleId, @PathVariable Long televisionID){
+        TelevisionDto televisionDto = televisionService.assignCIModuleToTelevision(ciModuleId, televisionID);
+        return ResponseEntity.ok(televisionDto);
+    }
+
+    @PutMapping("televisions/{televisionID}/wall-brackets/{wallBracketId}")
+    public ResponseEntity<Object> assignWallBracketsToTv(@PathVariable Long wallBracketId, @PathVariable Long televisionID){
+        TelevisionDto televisionDto = televisionService.assignWallBracketsToTelevision(wallBracketId, televisionID);
+        return ResponseEntity.ok(televisionDto);
+    }
+
 }
 

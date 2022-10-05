@@ -1,4 +1,4 @@
-package nl.novi.Les12SpringBootTechItEasyApplication.exceptions;
+package nl.novi.Les13SpringBootTechItEasyApplication.exceptions;
 
 
 public class RecordNotFoundException extends RuntimeException{

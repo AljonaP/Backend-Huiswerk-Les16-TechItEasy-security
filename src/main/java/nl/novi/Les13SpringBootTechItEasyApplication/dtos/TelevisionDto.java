@@ -1,53 +1,49 @@
-package nl.novi.Les12SpringBootTechItEasyApplication.dtos;
+package nl.novi.Les13SpringBootTechItEasyApplication.dtos;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.databind.annotation.JsonSerialize;
+import nl.novi.Les13SpringBootTechItEasyApplication.models.RemoteController;
 
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Size;
+import java.util.List;
 
-public class TelevisionInputDto {
+public class TelevisionDto {
+
     private Long id;
-    @NotBlank
-    @Size(min=1, max=50)
     private String type;
-    @NotBlank
-    @Size(min=1, max=50)
     private String brand;
-    @NotBlank
-    @Size(min=1, max=50)
     private String name;
-
-
     private Double price;
-
-
     private Double availableSize;
-
-
     private Double refreshRate;
-
-    @NotBlank
-    @Size(min=1, max=50)
     private String screenType;
-
-    @NotBlank
-    @Size(min=1, max=50)
     private String screenQuality;
-
     private Boolean smartTv;
-
     private Boolean wifi;
-
     private Boolean voiceControl;
-
     private Boolean hdr;
-
     private Boolean bluetooth;
-
     private Boolean ambiLight;
     private Integer originalStock;
     private Integer sold;
+    @JsonSerialize
+    private RemoteControllerDto remoteControllerDto;
+
+    @JsonSerialize CIModuleDto ciModuleDto;
+
+    @JsonSerialize
+    @JsonIgnore
+    List<WallBracketDto> wallBracketDtos;
 
 
-    public TelevisionInputDto(Long id, String type, String brand, String name, Double price, Double availableSize, Double refreshRate, String screenType, String screenQuality, Boolean smartTv, Boolean wifi, Boolean voiceControl, Boolean hdr, Boolean bluetooth, Boolean ambiLight, Integer originalStock, Integer sold) {
+
+
+
+    public TelevisionDto(){
+    }
+
+    public TelevisionDto(Long id, String type, String brand, String name, Double price, Double availableSize, Double refreshRate, String screenType, String screenQuality, Boolean smartTv, Boolean wifi, Boolean voiceControl, Boolean hdr, Boolean bluetooth, Boolean ambiLight, Integer originalStock, Integer sold) {
         this.id = id;
         this.type = type;
         this.brand = brand;
@@ -65,6 +61,29 @@ public class TelevisionInputDto {
         this.ambiLight = ambiLight;
         this.originalStock = originalStock;
         this.sold = sold;
+    }
+
+    public TelevisionDto(Long id, String type, String brand, String name, Double price, Double availableSize, Double refreshRate, String screenType, String screenQuality, Boolean smartTv, Boolean wifi, Boolean voiceControl, Boolean hdr, Boolean bluetooth, Boolean ambiLight, Integer originalStock, Integer sold, RemoteControllerDto remoteControllerDto, CIModuleDto ciModuleDto, List<WallBracketDto> wallBracketDtos) {
+        this.id = id;
+        this.type = type;
+        this.brand = brand;
+        this.name = name;
+        this.price = price;
+        this.availableSize = availableSize;
+        this.refreshRate = refreshRate;
+        this.screenType = screenType;
+        this.screenQuality = screenQuality;
+        this.smartTv = smartTv;
+        this.wifi = wifi;
+        this.voiceControl = voiceControl;
+        this.hdr = hdr;
+        this.bluetooth = bluetooth;
+        this.ambiLight = ambiLight;
+        this.originalStock = originalStock;
+        this.sold = sold;
+        this.remoteControllerDto = remoteControllerDto;
+        this.ciModuleDto = ciModuleDto;
+        this.wallBracketDtos = wallBracketDtos;
     }
 
     public Long getId() {
@@ -203,6 +222,30 @@ public class TelevisionInputDto {
         this.sold = sold;
     }
 
+    public RemoteControllerDto getRemoteControllerDto() {
+        return remoteControllerDto;
+    }
+
+    public void setRemoteControllerDto(RemoteControllerDto remoteControllerDto) {
+        this.remoteControllerDto = remoteControllerDto;
+    }
+
+    public CIModuleDto getCiModuleDto() {
+        return ciModuleDto;
+    }
+
+    public void setCiModuleDto(CIModuleDto ciModuleDto) {
+        this.ciModuleDto = ciModuleDto;
+    }
+
+    public List<WallBracketDto> getWallBracketDtos() {
+        return wallBracketDtos;
+    }
+
+    public void setWallBracketDtos(List<WallBracketDto> wallBracketDtos) {
+        this.wallBracketDtos = wallBracketDtos;
+    }
+
     @Override
     public String toString() {
         return "TelevisionDto{" +
@@ -224,6 +267,5 @@ public class TelevisionInputDto {
                 ", originalStock=" + originalStock +
                 ", sold=" + sold +
                 '}';
-
     }
 }
