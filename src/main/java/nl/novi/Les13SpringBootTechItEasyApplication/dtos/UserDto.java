@@ -1,6 +1,7 @@
 package nl.novi.Les13SpringBootTechItEasyApplication.dtos;
 
 import com.fasterxml.jackson.databind.annotation.JsonSerialize;
+import nl.novi.Les13SpringBootTechItEasyApplication.models.Authority;
 
 import java.util.Set;
 

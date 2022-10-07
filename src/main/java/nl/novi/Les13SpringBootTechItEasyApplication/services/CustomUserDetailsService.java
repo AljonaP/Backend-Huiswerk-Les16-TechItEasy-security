@@ -2,8 +2,13 @@ package nl.novi.Les13SpringBootTechItEasyApplication.services;
 
 import nl.novi.Les13SpringBootTechItEasyApplication.dtos.UserDto;
 import nl.novi.Les13SpringBootTechItEasyApplication.models.Authority;
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
+import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.core.userdetails.UserDetailsService;
 
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Set;
 
 
