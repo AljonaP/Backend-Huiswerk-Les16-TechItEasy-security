@@ -1,5 +1,8 @@
 package nl.novi.Les13SpringBootTechItEasyApplication.controllers;
 
+import nl.novi.Les13SpringBootTechItEasyApplication.dtos.UserDto;
+import nl.novi.Les13SpringBootTechItEasyApplication.exceptions.BadRequestException;
+import nl.novi.Les13SpringBootTechItEasyApplication.services.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -9,36 +12,27 @@ import java.net.URI;
 import java.util.List;
 import java.util.Map;
 
-@CrossOrigin // voor fullstackers zorgt voor CORS (omdat er verschillende porten worden gebruikt bij Frontend 3000 en bij Backend 8080)
+@CrossOrigin // voor fullstackers: omdat er verschillende porten worden gebruikt bij Frontend 3000 en bij Backend 8080
 @RestController
 @RequestMapping(value = "/users")
 public class UserController {
-
-    /*autowire userService*/
     @Autowired
     private UserService userService;
 
     @GetMapping(value = "")
     public ResponseEntity<List<UserDto>> getUsers() {
-
         List<UserDto> userDtos = userService.getUsers();
-
         return ResponseEntity.ok().body(userDtos);
     }
 
     @GetMapping(value = "/{username}")
     public ResponseEntity<UserDto> getUser(@PathVariable("username") String username) {
-
         UserDto optionalUser = userService.getUser(username);
-
-
         return ResponseEntity.ok().body(optionalUser);
-
     }
 
     @PostMapping(value = "")
     public ResponseEntity<UserDto> createKlant(@RequestBody UserDto dto) {;
-
         String newUsername = userService.createUser(dto);
         userService.addAuthority(newUsername, "ROLE_USER");
 
@@ -50,9 +44,7 @@ public class UserController {
 
     @PutMapping(value = "/{username}")
     public ResponseEntity<UserDto> updateKlant(@PathVariable("username") String username, @RequestBody UserDto dto) {
-
         userService.updateUser(username, dto);
-
         return ResponseEntity.noContent().build();
     }
 
@@ -84,5 +76,4 @@ public class UserController {
         userService.removeAuthority(username, authority);
         return ResponseEntity.noContent().build();
     }
-
 }

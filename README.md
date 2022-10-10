@@ -13,27 +13,27 @@ Maak de beveiliging voor de applicatie met een JWT. Zorg hierbij dat er een user
  
 ## Randvoorwaarden
 De opdracht moet voldoen aan de volgende voorwaarden:
-- De `POM` bevat de _spring-boot-starter-security_ dependency
+- [x] De `POM` bevat de _spring-boot-starter-security_ dependency
 - De applicatie bevat:
-  - `GlobalCorsConfiguration`
-  - `SpringSecurityConfig`
-  - `AuthenticationController`
-  - `UserController`
-  - `UserDto` (of `UserDto en UserInputDto`)
-  - `UsernameNotFoundException`
-  - `JWTFilter`
-  - `Authority`
-  - `AuthorityKey`
-  - `User`
-  - `AuthenticationRequest`(vorm van inputDto)
-  - `AuthenticationResponse` (vorm van dto)
-  - `UserRepository`
-  - `CustomUserDetailService`
-  - `UserService`
-  - `JwtUtil`
-  - `RandomStringGenerator`
-- Binnen de applicatie wordt rekening gehouden met CORS
-- De applicatie moet draaien met toegang tot de endpoints voor de juiste gebruikers geven
+  - [x] `GlobalCorsConfiguration`
+  - [x] `SpringSecurityConfig`
+  - [x] `AuthenticationController`
+  - [x] `UserController`
+  - [x] `UserDto` (of `UserDto en UserInputDto`)
+  - [x] `UsernameNotFoundException`
+  - [x] `JWTFilter` //JwtRequestFilter
+  - [x] `Authority`
+  - [x] `AuthorityKey`
+  - [x] `User`
+  - [x] `AuthenticationRequest`(vorm van inputDto)
+  - [x] `AuthenticationResponse` (vorm van dto)
+  - [x] `UserRepository`
+  - [x] `CustomUserDetailService`
+  - [x] `UserService`
+  - [x] `JwtUtil`
+  - [x] `RandomStringGenerator`
+- [x] Binnen de applicatie wordt rekening gehouden met CORS
+- [x] De applicatie moet draaien met toegang tot de endpoints voor de juiste gebruikers geven
 
 ### Belangrijk
 - De applicatie moet geen toegang geven zonder authenticatie en identificatie;
@@ -62,19 +62,19 @@ De opdracht moet voldoen aan de volgende voorwaarden:
 
 5. [x] Voeg een map toe genaamd `utils`. Voeg hier de `JwtUtil` en de `RandomStringGenerator` toe aan het project.
   
-6. Voeg de `UserService` en de `CustomUserDetailService` toe aan het project.
+6. [x] Voeg de `UserService` en de `CustomUserDetailService` toe aan het project.
 
 7. [x] Voeg de `BadRequestException` en de `UsernameNotFoundException` toe aan je project en zorg dat de exception handlers zijn toegevoegd in je `ExceptionController`.
 
-8. Voeg een nieuwe map genaamd `payload` met daarin de `AuthenticationRequest` en de `AuthenticationResponse` toe aan het project.
+8. [x] Voeg een nieuwe map genaamd `payload` met daarin de `AuthenticationRequest` en de `AuthenticationResponse` toe aan het project.
 
-9. Voeg de `AuthenticationController` en de `UserController` toe aan je project.
+9. [x] Voeg de `AuthenticationController` en de `UserController` toe aan je project.
 
-10. Voeg de `JwtRequestFilter` toe aan je project in een map genaamd `filter`.
+10. [x] Voeg de `JwtRequestFilter` toe aan je project in een map genaamd `filter`. 
 
-11. Voeg als laatste de `SpringSecurityConfig` en de `GlobalCorsConfiguration` toe aan het project.
+11. [x] Voeg als laatste de `SpringSecurityConfig` en de `GlobalCorsConfiguration` toe aan het project.
 
-12. Kijk goed of je in de `SpringSecurityConfig` nog antmatchers wil/moet toevoegen.
+12. [x] Kijk goed of je in de `SpringSecurityConfig` nog antmatchers wil/moet toevoegen.
 
 13. Update de data.sql met users en authorities.
 

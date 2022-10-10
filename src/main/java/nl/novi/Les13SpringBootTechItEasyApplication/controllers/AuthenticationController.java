@@ -1,6 +1,15 @@
 package nl.novi.Les13SpringBootTechItEasyApplication.controllers;
 
+import nl.novi.Les13SpringBootTechItEasyApplication.payload.AuthenticationRequest;
+import nl.novi.Les13SpringBootTechItEasyApplication.payload.AuthenticationResponse;
+import nl.novi.Les13SpringBootTechItEasyApplication.services.CustomUserDetailsService;
+import nl.novi.Les13SpringBootTechItEasyApplication.utils.JwtUtil;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.authentication.AuthenticationManager;
+import org.springframework.security.authentication.BadCredentialsException;
+import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.web.bind.annotation.*;
 
 import java.security.Principal;
@@ -9,14 +18,13 @@ import java.security.Principal;
 @RestController
 public class AuthenticationController {
 
-    /*autowire authentionManager, userDetailService en jwtUtil*/
     private AuthenticationManager authenticationManager;
-    private CustomUserDetailsService customUserDetailsService;
+    private CustomUserDetailsService userDetailsService;
     private JwtUtil jwtUtil;
 
     public AuthenticationController(AuthenticationManager authenticationManager, CustomUserDetailsService customUserDetailsService, JwtUtil jwtUtil) {
         this.authenticationManager = authenticationManager;
-        this.customUserDetailsService = customUserDetailsService;
+        this.userDetailsService = customUserDetailsService;
         this.jwtUtil = jwtUtil;
     }
 
@@ -40,8 +48,8 @@ public class AuthenticationController {
             throw new Exception("Incorrect username or password", ex);
         }
 
-        final UserDetails userDetails = userDetailsService
-                .loadUserByUsername(username);
+
+        final UserDetails userDetails = userDetailsService.loadUserByUsername(username);
 
         final String jwt = jwtUtil.generateToken(userDetails);
 

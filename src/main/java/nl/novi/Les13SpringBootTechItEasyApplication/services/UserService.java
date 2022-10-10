@@ -23,6 +23,8 @@ public class UserService {
         this.userRepository = userRepository;
     }
 
+
+
     public List<UserDto> getUsers() {
         List<UserDto> collection = new ArrayList<>();
         List<User> list = userRepository.findAll();
@@ -31,6 +33,7 @@ public class UserService {
         }
         return collection;
     }
+
 
     public UserDto getUser(String username) {
         UserDto dto = new UserDto();
@@ -74,7 +77,7 @@ public class UserService {
 
     public void addAuthority(String username, String authority) {
 
-        if (!userRepository.existsById(username)) throw new RecordNotFoundException()/(username);
+        if (!userRepository.existsById(username)) throw new RecordNotFoundException(username);
         User user = userRepository.findById(username).get();
         user.addAuthority(new Authority(username, authority));
         userRepository.save(user);
