@@ -1,12 +1,3 @@
--- INSERT INTO televisions (id, type, brand, name, price, available_size, refresh_rate, screen_type, screen_quality, smart_tv, wifi, voice_control, hdr, bluetooth, ambi_light, original_stock, sold) VALUES (1001,
--- 'NH3216SMART', 'Nikkei', 'HD smart TV', 159, 32, 100, 'LED', 'HD ready', true, true, false, false, false, false, 235885, 45896);
---
--- INSERT INTO remote_controllers (id, compatible_With, battery_Type, name, brand, price, original_Stock) VALUES (1001, 'Sony', 'AAA', 'RC001', 'Huawei', 12.30, 51236);
---
--- INSERT INTO ci_modules (id, name, type, price) VALUES (1001, 'universal CI-module', '23JI12', 32.5);;
---
--- INSERT INTO wall_brackets (id, size, adjustable, name, price) VALUES (1001, '42inch', false, 'Wall Bracket for 42inch screen size JO0564', 95.55);
-
 INSERT INTO wall_brackets (id, size, adjustable, name, price) VALUES (1001, '25X32', false, 'LG bracket', 32.23);
 INSERT INTO wall_brackets (id, size, adjustable, name, price) VALUES (1002, '25X32/32X40', true, 'LG bracket', 32.23);
 INSERT INTO wall_brackets (id, size, adjustable, name, price) VALUES (1003, '25X25', false, 'Philips bracket', 32.23);
@@ -36,3 +27,14 @@ INSERT INTO joined_table (televisions_id, wall_brackets_id) values (1001, 1004);
 INSERT INTO joined_table (televisions_id, wall_brackets_id) values (1001, 1005);
 
 
+--
+
+INSERT INTO users (username, password, enabled, apiKey, email) VALUES ('henk', 'password', true, '456781', 'henk@testy.tst');
+INSERT INTO users (username, password, enabled, apiKey, email) VALUES ('piet', 'password', true, '456782', 'piet@testy.tst');
+INSERT INTO users (username, password, enabled, apiKey, email) VALUES ('kelly', 'password', true, '456783', 'kelly@testy.tst');
+INSERT INTO users (username, password, enabled, apiKey, email) VALUES ('liz', 'password', true, '456784', 'liz@testy.tst');
+
+INSERT INTO authorities (username, authority) VALUES ('henk', 'ADMIN');
+INSERT INTO authorities (username, authority) VALUES ('piet', 'USER');
+INSERT INTO authorities (username, authority) VALUES ('kelly', 'USER');
+INSERT INTO authorities (username, authority) VALUES ('liz', 'USER');
